@@ -4,7 +4,6 @@
 from setuptools import setup
 import arbalest
 
-
 setup(
     name='arbalest',
     version=arbalest.__version__,
@@ -25,11 +24,16 @@ setup(
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Topic :: Database :: Database Engines/Servers',
-        'Topic :: System :: Distributed Computing',
+        'Topic :: System :: Distributed Computing'
     ],
     install_requires=['boto>=2.32.1,<3.0',
+                      'luigi==1.0.20',
+                      'protobuf==2.6.1',
                       'psycopg2'],
     tests_require=['mock==1.0.1'],
-    packages=['arbalest', 'arbalest.redshift'],
+    packages=['arbalest',
+              'arbalest.contrib',
+              'arbalest.pipeline',
+              'arbalest.redshift'],
     test_suite='test'
 )
