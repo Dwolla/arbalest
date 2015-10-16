@@ -1,6 +1,9 @@
 arbalest
 ========
 
+[![Build Status](https://travis-ci.org/Dwolla/arbalest.svg?branch=master)](https://travis-ci.org/Dwolla/arbalest)
+[![Documentation Status](https://readthedocs.org/projects/arbalest/badge/?version=latest)](http://arbalest.readthedocs.org/en/latest/?badge=latest)
+
 Arbalest is a Python data pipeline orchestration library for
 [Amazon S3](https://aws.amazon.com/documentation/s3/)
 and [Amazon Redshift](https://aws.amazon.com/documentation/redshift/).
