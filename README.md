@@ -239,7 +239,7 @@ target table.
 ### Luigi
 
 `PipelineTask` wraps any `arbalest.core.Pipeline` into a
-[Luigi Task](http://luigi.readthedocs.org/en/latest/api_overview.html?highlight=task#task).
+[Luigi Task](http://luigi.readthedocs.org/en/latest/tasks.html).
 This allows for the composition of workflows with dependency graphs, for example,
 data pipelines that are dependent on multiple steps or other pipelines. Luigi then takes care of
 the heavy lifting of
