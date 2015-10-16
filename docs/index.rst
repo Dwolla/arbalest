@@ -6,9 +6,9 @@
 arbalest
 ========
 
-**Arbalest is a Python data pipeline orchestration library for `Amazon S3`_
-and `Amazon Redshift`_. It takes care of the heavy lifting of making data
-queryable at scale in AWS.**
+**Arbalest is a Python data pipeline orchestration library for** `Amazon S3`_
+**and** `Amazon Redshift`_.
+**It takes care of the heavy lifting of making data queryable at scale in AWS.**
 
 .. _Amazon S3: https://aws.amazon.com/documentation/s3/
 .. _Amazon Redshift: https://aws.amazon.com/documentation/redshift/
@@ -24,7 +24,7 @@ It takes care of:
 
 Getting started is easy with ``pip``::
 
-   pip install mrjob
+   pip install arbalest
 
 Arbalest is licensed under the `MIT License`_.
 
@@ -43,4 +43,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
