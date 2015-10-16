@@ -29,7 +29,7 @@ or sparse data (`arbalest.pipeline`), or integration with an existing pipeline t
 **Use cases**
 
 Arbalest is not a MapReduce framework, but rather designed to make Amazon Redshift (and all its strengths) easy to use
-with typical data work flows and tools. Here are a few examples:
+with typical data workflows and tools. Here are a few examples:
 
 * You are already using a [MapReduce](https://pythonhosted.org/mrjob/) [framework](http://www.cascading.org/) to process data in S3.
 Arbalest could make the results of an [Elastic MapReduce](https://aws.amazon.com/documentation/elastic-mapreduce/) job queryable with SQL in Redshift.
@@ -43,9 +43,13 @@ Arbalest has support out of the box (`arbalest.contrib`) to integrate with tools
 
 Getting started is easy with `pip`:
 
-   pip install arbalest
-   
+`pip install arbalest`
+
+Examples of Arbalest pipeline are in `examples/`. An overview of concepts and classes are below.
+
 *Note*
+
+Arbalest depends on psycopg2. However, installing psycopg2 on Windows may not be straight forward.
 
 To install psycopg2 on Windows:
 
@@ -71,10 +75,7 @@ can have one or many steps that are made up of three parts:
 `source`: Path in an S3 bucket where data to be copied from is located consisting of JSON object files:
 
 ```
-{
-  "id": "66bc8153-d6d9-4351-bada-803330f22db7",
-  "someNumber": 1
-}
+{ "id": "66bc8153-d6d9-4351-bada-803330f22db7", "someNumber": 1 }
 ```
 
 `schema`: Definition of JSON objects to map into Redshift rows.
@@ -88,7 +89,7 @@ to a custom column name. Column names have a
 longer than 127 characters will be truncated.
 Nested properties will create a default column name delimited by an underscore.
 
-JSON Object:
+Example JSON Object (whitespace for clarity):
 
 ```
 {
@@ -100,7 +101,7 @@ JSON Object:
 }
 ```
 
-Schema:
+Example Schema:
 
 ```python
 JsonObject('destination_table_name',
@@ -117,7 +118,8 @@ The `S3CopyPipeline` supports different strategies for copying data from S3 to R
 
 Bulk copy imports all keys in an S3 path into a Redshift table using a staging table.
 By dropping and reimporting all data, duplication is eliminated.
-This type of copy is useful for data that does not change very often or will only be ingested once (immutable time series).
+This type of copy is useful for data that does not change very often or will
+only be ingested once (e.g. immutable time series).
 
 ### Manifest copy
 
@@ -201,7 +203,7 @@ if __name__ == '__main__':
 
 Included in this project are a variety of orchestration helpers to assist with
 the creation of pipelines.
-These classes are defined in the `arbalest.pipeline` and `arbalest.contrib` module.
+These classes are defined in the `arbalest.pipeline` and `arbalest.contrib` modules.
 
 ### Sorted data sources
 
