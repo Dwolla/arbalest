@@ -11,9 +11,7 @@ env/
 build/
 develop-eggs/
 dist/
-downloads/
 eggs/
-.eggs/
 lib/
 lib64/
 parts/
@@ -37,11 +35,9 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .coverage
-.coverage.*
 .cache
 nosetests.xml
 coverage.xml
-*,cover
 
 # Translations
 *.mo
@@ -55,3 +51,10 @@ docs/_build/
 
 # PyBuilder
 target/
+
+.idea/
+install.txt
+.vagrant/
+src/
+event_created_journal.json
+event_created_journal.db
