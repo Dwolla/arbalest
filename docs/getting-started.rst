@@ -114,3 +114,47 @@ Example data copies:
                                                           'custom_column_name')))
 
         pipeline.run()
+
+SQL
+~~~
+
+Pipelines can also have arbitrary SQL steps.
+Each SQL step can have one or many statements which are executed in a transaction, for example, orchestrating additional ETL (extract, transform, and load).
+Expanding on the previous example:
+
+.. code-block:: python
+
+    #!/usr/bin/env python
+    import psycopg2
+    from arbalest.configuration import env
+    from arbalest.redshift import S3CopyPipeline
+    from arbalest.redshift.schema import JsonObject, Property
+
+    if __name__ == '__main__':
+        pipeline = S3CopyPipeline(
+            aws_access_key_id=env('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=env('AWS_SECRET_ACCESS_KEY'),
+            bucket=env('BUCKET_NAME'),
+            db_connection=psycopg2.connect(env('REDSHIFT_CONNECTION')))
+
+        pipeline.bulk_copy(metadata='path_to_save_pipeline_metadata',
+                           source='path_of_source_data',
+                           schema=JsonObject('destination_table_name',
+                                             Property('id', 'VARCHAR(36)'),
+                                             Property('someNumber', 'INTEGER',
+                                                      'custom_column_name')))
+
+        pipeline.manifest_copy(metadata='path_to_save_pipeline_metadata',
+                               source='path_of_incremental_source_data',
+                               schema=JsonObject('incremental_destination_table_name',
+                                                 Property('id', 'VARCHAR(36)'),
+                                                 Property('someNumber', 'INTEGER',
+                                                          'custom_column_name')))
+
+        pipeline.sql(('SELECT someNumber + %s '
+                      'INTO some_olap_table FROM destination_table_name', 1),
+                     ('SELECT * INTO destination_table_name_copy '
+                      'FROM destination_table_name'))
+
+        pipeline.run()
+
