@@ -172,7 +172,7 @@ Assuming source data is stored in a sortable series of directories, `S3SortedDat
 facilitates the retrieval of S3 paths in a sequence for import, given a start
 and/or end. In addition, it has methods to mark a cursor in an S3 persisted journal.
 
-**Examples of sorted series**
+**Examples of data stored as a sorted series**
 
 Sequential integers::
 
@@ -186,6 +186,17 @@ Time series::
     s3://bucket/child/2015-01-02/*
     s3://bucket/child/2015-01-03/*
     s3://bucket/child/2015-01-04/00/*
+
+**Example of sorted data source class**
+
+.. code-block:: python
+
+    S3SortedDataSources(
+                metadata='',
+                source='child',
+                bucket=bucket,
+                start=env('START'),
+                end=env('END'))
 
 Time Series
 ~~~~~~~~~~~
