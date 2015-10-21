@@ -158,3 +158,48 @@ Expanding on the previous example:
 
         pipeline.run()
 
+Orchestration Helpers
+---------------------
+
+Included in this project are a variety of orchestration helpers to assist with
+the creation of pipelines.
+These classes are defined in the `arbalest.pipeline` and `arbalest.contrib` modules.
+
+Sorted Data Sources
+~~~~~~~~~~~~~~~~~~~
+
+Assuming source data is stored in a sortable series of directories, `S3SortedDataSources`
+facilitates the retrieval of S3 paths in a sequence for import, given a start
+and/or end. In addition, it has methods to mark a cursor in an S3 persisted journal.
+
+**Examples of sorted series**
+
+Sequential integers::
+
+    s3://bucket/child/1/*
+    s3://bucket/child/2/*
+    s3://bucket/child/3/*
+
+Time series::
+
+    s3://bucket/child/2015-01-01/*
+    s3://bucket/child/2015-01-02/*
+    s3://bucket/child/2015-01-03/*
+    s3://bucket/child/2015-01-04/00/*
+
+Time Series
+~~~~~~~~~~~
+
+`SqlTimeSeriesImport` implements a bulk copy and update strategy of data from
+a list of time series sources from `S3SortedDataSources` into an existing
+target table.
+
+Luigi
+~~~~~
+
+`PipelineTask` wraps any `arbalest.core.Pipeline` into a `Luigi Task <http://luigi.readthedocs.org/en/latest/tasks.html>`_.
+This allows for the composition of workflows with dependency graphs, for example,
+data pipelines that are dependent on multiple steps or other pipelines. Luigi then takes care of
+the heavy lifting of
+`scheduling and executing <http://luigi.readthedocs.org/en/latest/central_scheduler.html>`_
+multistep pipelines.
