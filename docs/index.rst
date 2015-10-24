@@ -36,6 +36,7 @@ Contents:
 .. toctree::
    :maxdepth: 3
 
+   rationale.rst
    getting-started.rst
 
 

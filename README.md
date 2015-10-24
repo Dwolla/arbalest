@@ -29,7 +29,7 @@ for data science
 * Batteries included, for example, strategies for ingesting time series
 or sparse data (`arbalest.pipeline`), or integration with an existing pipeline topology (`arbalest.contrib`)
 
-**Use cases**
+**Use Cases**
 
 Arbalest is not a MapReduce framework, but rather designed to make Amazon Redshift (and all its strengths) easy to use
 with typical data workflows and tools. Here are a few examples:
@@ -113,18 +113,18 @@ JsonObject('destination_table_name',
     Property('child', Property('someBoolean', 'BOOLEAN')))
 ```
 
-## Copy strategies
+## Copy Strategies
 
 The `S3CopyPipeline` supports different strategies for copying data from S3 to Redshift.
 
-### Bulk copy
+### Bulk Copy
 
 Bulk copy imports all keys in an S3 path into a Redshift table using a staging table.
 By dropping and reimporting all data, duplication is eliminated.
 This type of copy is useful for data that does not change very often or will
 only be ingested once (e.g. immutable time series).
 
-### Manifest copy
+### Manifest Copy
 
 A manifest copy imports all keys in an S3 path into a Redshift table using a [manifest](http://docs.aws.amazon.com/redshift/latest/dg/loading-data-files-using-manifest.html).
 In addition, a journal of successfully imported objects is persisted to the `metadata` path.
@@ -208,7 +208,7 @@ Included in this project are a variety of orchestration helpers to assist with
 the creation of pipelines.
 These classes are defined in the `arbalest.pipeline` and `arbalest.contrib` modules.
 
-### Sorted data sources
+### Sorted Data Sources
 
 Assuming source data is stored in a sortable series of directories, `S3SortedDataSources`
 facilitates the retrieval of S3 paths in a sequence for import, given a start
@@ -233,7 +233,7 @@ s3://bucket/child/2015-01-03/*
 s3://bucket/child/2015-01-04/00/*
 ```
 
-### Time series
+### Time Series
 
 `SqlTimeSeriesImport` implements a bulk copy and update strategy of data from
 a list of time series sources from `S3SortedDataSources` into an existing
