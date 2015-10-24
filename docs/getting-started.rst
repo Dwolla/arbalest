@@ -205,6 +205,50 @@ Time Series
 a list of time series sources from `S3SortedDataSources` into an existing
 target table.
 
+**Example time series import from an S3 time series topology, ingesting a day of objects**
+
+Time series path topology::
+
+    s3://bucket/child/2015-01-01/*
+    s3://bucket/child/2015-01-02/*
+
+.. code-block:: python
+
+    ExamplePipeline(S3CopyPipeline):
+        def __init__(self,
+                 aws_access_key_id,
+                 aws_secret_access_key,
+                 bucket,
+                 db_connection):
+            super(ExamplePipeline, self).__init__(
+                aws_access_key_id,
+                aws_secret_access_key,
+                bucket,
+                db_connection)
+
+            # Create table to ingest data into if it does not exist
+            self.sql('CREATE target_table IF NOT EXISTS target_table(id VARCHAR(36), someNumber INTEGER, timestamp TIMESTAMP);')
+
+            time_series = SqlTimeSeriesImport(
+                destination_table='target_table',
+                update_date='2015-01-01', # Replace existing events, if any, after this timestamp
+                sources=S3SortedDataSources(
+                            metadata='',
+                            source='child',
+                            bucket=bucket,
+                            start='2015-01-01',
+                            end='2015-01-02'),
+                Property('id', 'VARCHAR(36)'),
+                Property('someNumber', 'INTEGER'),
+                Property('timestamp', 'TIMESTAMP'))
+
+            # Populate target_table using a bulk copy per day
+            time_series.bulk_copy(
+                pipeline=self,
+                metadata='',
+                max_error=1000, # Maximum errors tolerated by Redshift COPY
+                order_by_column='timestamp') # Use column named timestamp to sort by and replace existing events, if any
+
 Luigi
 ~~~~~
 
