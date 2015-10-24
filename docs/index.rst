@@ -38,6 +38,7 @@ Contents:
 
    rationale.rst
    getting-started.rst
+   author.rst
 
 
 
