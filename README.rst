@@ -49,7 +49,7 @@ Getting started is easy with ``pip``:
 
 Examples of Arbalest pipeline are in ``examples/``. An overview of concepts and classes are below.
 
-`Note`
+*Note*
 
 Arbalest depends on psycopg2. However, installing psycopg2 on Windows may not be straight forward.
 
