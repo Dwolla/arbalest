@@ -80,7 +80,7 @@ can have one or many steps that are made up of three parts:
 Schemas
 -------
 
-A schema is defined using a `JsonObject` mapper which consists of one or many `Property` declarations.
+A schema is defined using a ``JsonObject`` mapper which consists of one or many ``Property`` declarations.
 By default the name of the JSON property is used as the column, but can be set
 to a custom column name. Column names have a
 `maximum length of 127 characters <http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html>`_. Column names
