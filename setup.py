@@ -8,7 +8,7 @@ setup(
     name='arbalest',
     version=arbalest.__version__,
     description='Arbalest orchestrates bulk data loading for Amazon Redshift',
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     author=arbalest.__author__,
     author_email='fred+arbalest@dwolla.com',
     license='MIT',
