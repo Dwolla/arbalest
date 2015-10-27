@@ -4,7 +4,7 @@ arbalest
 .. image:: https://travis-ci.org/Dwolla/arbalest.svg?branch=master
    :target: https://travis-ci.org/Dwolla/arbalest
 
-.. image:: https://readthedocs.org/projects/arbalest/badge/?version=latest)
+.. image:: https://readthedocs.org/projects/arbalest/badge/?version=latest
    :target: http://arbalest.readthedocs.org/en/latest/?badge=latest
 
 `Arbalest`_ is a Python data pipeline orchestration library for `Amazon S3`_
